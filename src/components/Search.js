@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Search() {
+// getting search from header, from app as a callback function
+function Search({ onSearch }) {
+  // we need to make state to persist the data and have it be a controlled form
+  const [currentState, setCurrentState] = useState("")
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
+    // setting current search state to the overall search state
+    onSearch(currentState);
   }
 
   return (
@@ -12,8 +18,10 @@ function Search() {
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        // using current search state as value
+        value={currentState}
+        // call set search when value is changed to update state
+        onChange={(e) => setCurrentState(e.target.value)}
       />
       <button type="submit">🔍</button>
     </form>

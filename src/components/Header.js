@@ -1,7 +1,8 @@
 import React from "react";
 import Search from "./Search";
 
-function Header() {
+// getting search callback function from app, sending down to search
+function Header({ onSearch }) {
   return (
     <header>
       <h1>
@@ -10,7 +11,8 @@ function Header() {
         </span>
         gregslist
       </h1>
-      <Search />
+      {/* sending callback from app to search for changing the search */}
+      <Search onSearch={onSearch} />
     </header>
   );
 }
